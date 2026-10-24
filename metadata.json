@@ -1,0 +1,6 @@
+{
+  "name": "Gestor PESV - Resolución 40595",
+  "description": "Plataforma arquitectónica e interactiva para la planificación, implementación, seguimiento y mejora del Plan Estratégico de Seguridad Vial (PESV) de Colombia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
