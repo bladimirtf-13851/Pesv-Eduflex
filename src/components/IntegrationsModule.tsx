@@ -345,7 +345,8 @@ export default function IntegrationsModule({
   const [adminError, setAdminError] = useState<string>('');
 
   const [integrationMantenimiento, setIntegrationMantenimiento] = useState<boolean>(() => {
-    return localStorage.getItem('pesv_int_mantenimiento') === 'true';
+    const val = localStorage.getItem('pesv_int_mantenimiento');
+    return val !== null ? val === 'true' : true;
   });
   const [integrationCapacitaciones, setIntegrationCapacitaciones] = useState<boolean>(() => {
     return localStorage.getItem('pesv_int_capacitaciones') === 'true';
@@ -354,15 +355,19 @@ export default function IntegrationsModule({
     return localStorage.getItem('pesv_int_sst') === 'true';
   });
 
-  // Listen to training integration updates from Step 10
+  // Listen to training (Step 10) and maintenance (Step 16 & 17) integration updates
   useEffect(() => {
     const handleUpdate = () => {
       setIntegrationCapacitaciones(localStorage.getItem('pesv_int_capacitaciones') === 'true');
+      const mntVal = localStorage.getItem('pesv_int_mantenimiento');
+      setIntegrationMantenimiento(mntVal !== null ? mntVal === 'true' : true);
     };
     window.addEventListener('pesv_training_integration_updated', handleUpdate);
+    window.addEventListener('pesv_maintenance_integration_updated', handleUpdate);
     window.addEventListener('storage', handleUpdate);
     return () => {
       window.removeEventListener('pesv_training_integration_updated', handleUpdate);
+      window.removeEventListener('pesv_maintenance_integration_updated', handleUpdate);
       window.removeEventListener('storage', handleUpdate);
     };
   }, []);
@@ -385,6 +390,9 @@ export default function IntegrationsModule({
     }
     setIntegrationMantenimiento(checked);
     localStorage.setItem('pesv_int_mantenimiento', checked ? 'true' : 'false');
+    window.dispatchEvent(new CustomEvent('pesv_maintenance_integration_updated', {
+      detail: { enabled: checked }
+    }));
   };
 
   const handleToggleCapacitaciones = (checked: boolean) => {
@@ -1502,15 +1510,49 @@ export default function IntegrationsModule({
               </div>
 
               <div>
-                <h4 className="text-xs font-bold text-gray-900 leading-snug">Plan de Mantenimientos</h4>
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xs font-bold text-gray-900 leading-snug">Inspección y Plan de Mantenimientos</h4>
+                  <span className="text-[9px] font-black px-1.5 py-0.5 bg-sky-100 text-sky-800 rounded">
+                    Paso 16 y 17 PESV
+                  </span>
+                </div>
                 <p className="text-[11px] text-gray-500 mt-1 leading-relaxed">
-                  Sincronización en tiempo real del estado de mantenimiento preventivo y correctivo de la flota.
+                  Sincronización en tiempo real de inspecciones preoperacionales diarias (Paso 16) y mantenimiento preventivo/correctivo de la flota (Paso 17).
                 </p>
               </div>
 
               <div className="bg-slate-100/80 rounded border border-gray-200 p-1.5 text-[10px] font-mono break-all select-all text-slate-600">
                 <span className="text-slate-400 block text-[8px] font-bold uppercase">App URL:</span>
-                https://plan-de-mantenimientos-production.up.railway.app
+                https://plan-de-mantenimientos-production.up.railway.app/
+              </div>
+
+              <div className="flex items-center justify-between bg-sky-50/70 border border-sky-200 rounded p-1.5 text-[10px]">
+                <span className="text-sky-900 font-medium">Gestionar en pasos PESV:</span>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      localStorage.setItem('pesv_target_step_id', '16');
+                      window.dispatchEvent(new CustomEvent('pesv_navigate_tab', { detail: { tab: 'classification' } }));
+                      window.dispatchEvent(new CustomEvent('pesv_activate_step', { detail: { stepId: 16 } }));
+                    }}
+                    className="font-black text-sky-800 hover:text-sky-950 underline cursor-pointer"
+                  >
+                    Paso 16 →
+                  </button>
+                  <span className="text-sky-300">|</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      localStorage.setItem('pesv_target_step_id', '17');
+                      window.dispatchEvent(new CustomEvent('pesv_navigate_tab', { detail: { tab: 'classification' } }));
+                      window.dispatchEvent(new CustomEvent('pesv_activate_step', { detail: { stepId: 17 } }));
+                    }}
+                    className="font-black text-sky-800 hover:text-sky-950 underline cursor-pointer"
+                  >
+                    Paso 17 →
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -1520,7 +1562,7 @@ export default function IntegrationsModule({
                 {integrationMantenimiento ? 'Canal API Activo' : 'Inactivo'}
               </span>
               <a
-                href="https://plan-de-mantenimientos-production.up.railway.app"
+                href="https://plan-de-mantenimientos-production.up.railway.app/"
                 target="_blank"
                 rel="noreferrer"
                 className="text-sky-600 hover:text-sky-850 font-bold flex items-center gap-0.5 hover:underline"

@@ -150,7 +150,7 @@ export const PESV_STEPS: PESVStep[] = [
     phase: 2,
     levels: ['BÁSICO', 'ESTÁNDAR', 'AVANZADO'],
     description: 'Realizar y documentar diariamente la inspección preoperacional técnico-mecánica de los vehículos antes de iniciar ruta.',
-    automationSummary: 'App móvil y formulario de inspección preoperacional con validación de sistemas críticos (frenos, llantas, luces).',
+    automationSummary: 'Conectado a Aplicativo Externo de Inspección y Mantenimiento para validación preoperacional diaria de sistemas críticos.',
     completed: true
   },
   {
@@ -159,8 +159,8 @@ export const PESV_STEPS: PESVStep[] = [
     phase: 2,
     levels: ['BÁSICO', 'ESTÁNDAR', 'AVANZADO'],
     description: 'Ejecutar el plan de mantenimiento preventivo y correctivo de la flota vehicular según fichas técnicas de los fabricantes.',
-    automationSummary: 'Hoja de vida de vehículos, historial de mantenimientos en taller y alertas de kilometraje para próximo servicio.',
-    completed: false
+    automationSummary: 'Conectado a Aplicativo Externo de Inspección y Mantenimiento para hojas de vida de flota y control de OTs preventivas/correctivas.',
+    completed: true
   },
   {
     id: 18,
