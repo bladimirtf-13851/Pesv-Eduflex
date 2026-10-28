@@ -197,8 +197,8 @@ export const PESV_STEPS: PESVStep[] = [
     phase: 3,
     levels: ['AVANZADO'],
     description: 'Consolidar el histórico estadístico de colisiones e incidentes viales para identificar tendencias, patrones y recurrencias.',
-    automationSummary: 'Analítica avanzada de siniestralidad con cruce por tipo de vehículo, franja horaria y factor causal.',
-    completed: false
+    automationSummary: 'Conectado a Aplicativo Externo de Indicadores SST (https://indicadores-sst-production.up.railway.app/) para análisis estadístico de siniestros, severidad y factores causales.',
+    completed: true
   },
   {
     id: 22,

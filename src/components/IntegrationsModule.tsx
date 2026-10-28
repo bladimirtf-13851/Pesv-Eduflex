@@ -1666,15 +1666,35 @@ export default function IntegrationsModule({
               </div>
 
               <div>
-                <h4 className="text-xs font-bold text-gray-900 leading-snug">Indicadores de SST</h4>
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xs font-bold text-gray-900 leading-snug">Indicadores de SST y Siniestralidad</h4>
+                  <span className="text-[9px] font-black px-1.5 py-0.5 bg-purple-100 text-purple-800 rounded">
+                    Paso 21 PESV
+                  </span>
+                </div>
                 <p className="text-[11px] text-gray-500 mt-1 leading-relaxed">
-                  Consolidación de estadísticas e indicadores del Sistema de Gestión de Seguridad y Salud en el Trabajo.
+                  Consolidación de estadísticas, registro de siniestros viales e indicadores del Sistema de Gestión de Seguridad y Salud en el Trabajo (Paso 21).
                 </p>
               </div>
 
               <div className="bg-slate-100/80 rounded border border-gray-200 p-1.5 text-[10px] font-mono break-all select-all text-slate-600">
                 <span className="text-slate-400 block text-[8px] font-bold uppercase">App URL:</span>
-                https://indicadores-sst-production.up.railway.app
+                https://indicadores-sst-production.up.railway.app/
+              </div>
+
+              <div className="flex items-center justify-between bg-purple-50/70 border border-purple-200 rounded p-1.5 text-[10px]">
+                <span className="text-purple-900 font-medium">Gestionar estadísticas y siniestros:</span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    localStorage.setItem('pesv_target_step_id', '21');
+                    window.dispatchEvent(new CustomEvent('pesv_navigate_tab', { detail: { tab: 'classification' } }));
+                    window.dispatchEvent(new CustomEvent('pesv_activate_step', { detail: { stepId: 21 } }));
+                  }}
+                  className="font-black text-purple-800 hover:text-purple-950 underline cursor-pointer"
+                >
+                  Configurar en Paso 21 →
+                </button>
               </div>
             </div>
 
@@ -1684,7 +1704,7 @@ export default function IntegrationsModule({
                 {integrationSst ? 'Canal API Activo' : 'Inactivo'}
               </span>
               <a
-                href="https://indicadores-sst-production.up.railway.app"
+                href="https://indicadores-sst-production.up.railway.app/"
                 target="_blank"
                 rel="noreferrer"
                 className="text-sky-600 hover:text-sky-850 font-bold flex items-center gap-0.5 hover:underline"
