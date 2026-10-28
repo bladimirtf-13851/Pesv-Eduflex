@@ -208,6 +208,26 @@ export const PESV_STEPS: PESVStep[] = [
     description: 'Planificar y ejecutar por lo menos una auditoría anual interna o externa para verificar la eficacia y cumplimiento del PESV.',
     automationSummary: 'Módulo integral de auditoría con calificación por paso normativo, emisión de concepto oficial y acta en PDF.',
     completed: true
+  },
+
+  // FASE 4: Mejora Continua del PESV (Pasos 23 al 24)
+  {
+    id: 23,
+    title: 'Mejora continua, acciones preventivas y correctivas',
+    phase: 4,
+    levels: ['BÁSICO', 'ESTÁNDAR', 'AVANZADO'],
+    description: 'Definir e implementar las acciones preventivas y correctivas necesarias con base en los resultados de la medición, análisis de indicadores, auditorías y visitas de verificación para la mejora continua del PESV.',
+    automationSummary: 'Matriz interactiva de acciones preventivas, correctivas y de mejora (Ciclo PHVA), análisis de causa raíz, seguimiento de eficacia y exportación en PDF Carta.',
+    completed: true
+  },
+  {
+    id: 24,
+    title: 'Mecanismos de comunicación y participación',
+    phase: 4,
+    levels: ['BÁSICO', 'ESTÁNDAR', 'AVANZADO'],
+    description: 'Garantizar que las políticas, lineamientos, lecciones aprendidas y actividades de seguridad vial sean comunicados a todos los niveles, y recibir retroalimentación, propuestas o reportes de condiciones inseguras por parte de los actores viales.',
+    automationSummary: 'Matriz de campañas, boletines, socialización de lecciones aprendidas, buzón de participación/reporte de condiciones inseguras y reporte oficial en PDF Carta.',
+    completed: true
   }
 ];
 
@@ -239,9 +259,9 @@ export const ROAD_SAFETY_METRICS = {
     { mes: 'Jun', diasIncapacidad: 0, tasa: 0.0, meta: 10.0 }
   ],
   avancePasosPorNivel: {
-    BÁSICO: { completados: 0, totales: 16, porcentaje: 0.0 },
-    ESTÁNDAR: { completados: 0, totales: 20, porcentaje: 0.0 },
-    AVANZADO: { completados: 0, totales: 22, porcentaje: 0.0 }
+    BÁSICO: { completados: 0, totales: 18, porcentaje: 0.0 },
+    ESTÁNDAR: { completados: 0, totales: 22, porcentaje: 0.0 },
+    AVANZADO: { completados: 0, totales: 24, porcentaje: 0.0 }
   },
   cumplimientoMetasProgramas: [
     { programa: 'Gestión de Velocidad', cumplimiento: 0, meta: 95 },

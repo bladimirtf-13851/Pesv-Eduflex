@@ -59,19 +59,19 @@ export default function ClassificationModule({ config, onUpdateConfig }: Classif
         return {
           level: 'AVANZADO',
           applies: true,
-          explanation: 'Empresa de Transporte con 50 o más vehículos, o 50 o más conductores. Clasificación: AVANZADO (aplica los 22 pasos normativos).'
+          explanation: 'Empresa de Transporte con 50 o más vehículos, o 50 o más conductores. Clasificación: AVANZADO (aplica los 24 pasos normativos de las 4 fases).'
         };
       } else if (vehs >= 20 || drivers >= 20) {
         return {
           level: 'ESTÁNDAR',
           applies: true,
-          explanation: 'Empresa de Transporte con 20 a 49 vehículos, o 20 a 49 conductores. Clasificación: ESTÁNDAR (aplica 20 pasos normativos obligatorios).'
+          explanation: 'Empresa de Transporte con 20 a 49 vehículos, o 20 a 49 conductores. Clasificación: ESTÁNDAR (aplica 22 pasos normativos obligatorios en las 4 fases).'
         };
       } else {
         return {
           level: 'BÁSICO',
           applies: true,
-          explanation: 'Empresa de Transporte con 11 a 19 vehículos, o 11 a 19 conductores. Clasificación: BÁSICO (aplica 16 pasos normativos obligatorios).'
+          explanation: 'Empresa de Transporte con 11 a 19 vehículos, o 11 a 19 conductores. Clasificación: BÁSICO (aplica 18 pasos normativos obligatorios en las 4 fases).'
         };
       }
     } else {
@@ -80,19 +80,19 @@ export default function ClassificationModule({ config, onUpdateConfig }: Classif
         return {
           level: 'AVANZADO',
           applies: true,
-          explanation: 'Empresa diferente al transporte con más de 100 vehículos, o más de 100 conductores. Clasificación: AVANZADO (aplica los 22 pasos normativos).'
+          explanation: 'Empresa diferente al transporte con más de 100 vehículos, o más de 100 conductores. Clasificación: AVANZADO (aplica los 24 pasos normativos de las 4 fases).'
         };
       } else if (vehs >= 50 || drivers >= 50) {
         return {
           level: 'ESTÁNDAR',
           applies: true,
-          explanation: 'Empresa diferente al transporte con 50 a 100 vehículos, o 50 a 100 conductores. Clasificación: ESTÁNDAR (aplica 20 pasos normativos obligatorios).'
+          explanation: 'Empresa diferente al transporte con 50 a 100 vehículos, o 50 a 100 conductores. Clasificación: ESTÁNDAR (aplica 22 pasos normativos obligatorios en las 4 fases).'
         };
       } else {
         return {
           level: 'BÁSICO',
           applies: true,
-          explanation: 'Empresa diferente al transporte con 11 a 49 vehículos, o 11 a 49 conductores. Clasificación: BÁSICO (aplica 16 pasos normativos obligatorios).'
+          explanation: 'Empresa diferente al transporte con 11 a 49 vehículos, o 11 a 49 conductores. Clasificación: BÁSICO (aplica 18 pasos normativos obligatorios en las 4 fases).'
         };
       }
     }
@@ -300,7 +300,7 @@ export default function ClassificationModule({ config, onUpdateConfig }: Classif
           <div className="flex items-center gap-2 text-xs text-emerald-800 bg-emerald-50 px-3 py-2 rounded-lg border border-emerald-200/70 max-w-lg">
             <Info size={14} className="shrink-0 text-emerald-600" />
             <span>
-              Nivel de aplicabilidad activo: <strong>{nivelCalculado}</strong> ({nivelCalculado === 'BÁSICO' ? '16' : nivelCalculado === 'ESTÁNDAR' ? '20' : '22'} pasos obligatorios habilitados en la estructura detallada).
+              Nivel de aplicabilidad activo: <strong>{nivelCalculado}</strong> ({nivelCalculado === 'BÁSICO' ? '18' : nivelCalculado === 'ESTÁNDAR' ? '22' : '24'} pasos obligatorios habilitados en las 4 fases).
             </span>
           </div>
           <button
@@ -348,7 +348,7 @@ export default function ClassificationModule({ config, onUpdateConfig }: Classif
             <div>
               <span className="text-slate-400 text-[10px] uppercase font-semibold block">Pasos Obligatorios</span>
               <span className="text-lg font-bold text-emerald-400">
-                {nivelCalculado === 'BÁSICO' ? '16 / 22' : nivelCalculado === 'ESTÁNDAR' ? '20 / 22' : '22 / 22'}
+                {nivelCalculado === 'BÁSICO' ? '18 / 24' : nivelCalculado === 'ESTÁNDAR' ? '22 / 24' : '24 / 24'}
               </span>
             </div>
             <div>
@@ -369,17 +369,17 @@ export default function ClassificationModule({ config, onUpdateConfig }: Classif
               <div className="text-[11px] font-bold text-gray-800 bg-gray-50 px-2 py-1 rounded">MISIÓN 1: SERVICIO DE TRANSPORTE</div>
               <div className="mt-1.5 grid grid-cols-3 gap-1 text-[10px] text-gray-600 text-center">
                 <div className={`border p-1 rounded ${nivelCalculado === 'BÁSICO' && misionalidad === 'TRANSPORTE' ? 'border-emerald-500 bg-emerald-50 font-bold text-emerald-900' : 'border-gray-100'}`}>
-                  <div className="font-semibold">BÁSICO (16)</div>
+                  <div className="font-semibold">BÁSICO (18)</div>
                   <div>11 - 19 Veh.</div>
                   <div>11 - 19 Cond.</div>
                 </div>
                 <div className={`border p-1 rounded ${nivelCalculado === 'ESTÁNDAR' && misionalidad === 'TRANSPORTE' ? 'border-emerald-500 bg-emerald-50 font-bold text-emerald-900' : 'border-gray-100 bg-slate-50/50'}`}>
-                  <div className="font-semibold">ESTÁNDAR (20)</div>
+                  <div className="font-semibold">ESTÁNDAR (22)</div>
                   <div>20 - 49 Veh.</div>
                   <div>20 - 49 Cond.</div>
                 </div>
                 <div className={`border p-1 rounded ${nivelCalculado === 'AVANZADO' && misionalidad === 'TRANSPORTE' ? 'border-emerald-500 bg-emerald-50 font-bold text-emerald-900' : 'border-gray-100'}`}>
-                  <div className="font-semibold">AVANZADO (22)</div>
+                  <div className="font-semibold">AVANZADO (24)</div>
                   <div>≥ 50 Veh.</div>
                   <div>≥ 50 Cond.</div>
                 </div>
@@ -390,17 +390,17 @@ export default function ClassificationModule({ config, onUpdateConfig }: Classif
               <div className="text-[11px] font-bold text-gray-800 bg-gray-50 px-2 py-1 rounded">MISIÓN 2: NO TRANSPORTE</div>
               <div className="mt-1.5 grid grid-cols-3 gap-1 text-[10px] text-gray-600 text-center">
                 <div className={`border p-1 rounded ${nivelCalculado === 'BÁSICO' && misionalidad === 'NO_TRANSPORTE' ? 'border-emerald-500 bg-emerald-50 font-bold text-emerald-900' : 'border-gray-100'}`}>
-                  <div className="font-semibold">BÁSICO (16)</div>
+                  <div className="font-semibold">BÁSICO (18)</div>
                   <div>11 - 49 Veh.</div>
                   <div>11 - 49 Cond.</div>
                 </div>
                 <div className={`border p-1 rounded ${nivelCalculado === 'ESTÁNDAR' && misionalidad === 'NO_TRANSPORTE' ? 'border-emerald-500 bg-emerald-50 font-bold text-emerald-900' : 'border-gray-100 bg-slate-50/50'}`}>
-                  <div className="font-semibold">ESTÁNDAR (20)</div>
+                  <div className="font-semibold">ESTÁNDAR (22)</div>
                   <div>50 - 100 Veh.</div>
                   <div>50 - 100 Cond.</div>
                 </div>
                 <div className={`border p-1 rounded ${nivelCalculado === 'AVANZADO' && misionalidad === 'NO_TRANSPORTE' ? 'border-emerald-500 bg-emerald-50 font-bold text-emerald-900' : 'border-gray-100'}`}>
-                  <div className="font-semibold">AVANZADO (22)</div>
+                  <div className="font-semibold">AVANZADO (24)</div>
                   <div>&gt; 100 Veh.</div>
                   <div>&gt; 100 Cond.</div>
                 </div>

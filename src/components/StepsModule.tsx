@@ -32,6 +32,7 @@ import Step15TripPlanningModule from './Step15TripPlanningModule';
 import Step16And17MaintenanceModule from './Step16And17MaintenanceModule';
 import Step18ChangeManagementModule from './Step18ChangeManagementModule';
 import Step20IndicatorsModule from './Step20IndicatorsModule';
+import Step23And24ImprovementModule from './Step23And24ImprovementModule';
 
 interface StepsModuleProps {
   config: CompanyConfig;
@@ -1693,6 +1694,7 @@ export default function StepsModule({
       case 1: return 'Fase 1: Planificación (Pasos 1 al 8)';
       case 2: return 'Fase 2: Implementación y Ejecución (Pasos 9 al 19)';
       case 3: return 'Fase 3: Seguimiento y Auditoría (Pasos 20 al 22)';
+      case 4: return 'Fase 4: Mejora Continua del PESV (Pasos 23 al 24)';
       default: return '';
     }
   };
@@ -1702,6 +1704,7 @@ export default function StepsModule({
       case 1: return 'bg-blue-50 text-blue-700 border-blue-200';
       case 2: return 'bg-emerald-50 text-emerald-700 border-emerald-200';
       case 3: return 'bg-indigo-50 text-indigo-700 border-indigo-200';
+      case 4: return 'bg-amber-50 text-amber-800 border-amber-200';
       default: return 'bg-gray-50 text-gray-700 border-gray-200';
     }
   };
@@ -1866,7 +1869,8 @@ export default function StepsModule({
           {[
             { id: 1, name: 'Fase 1: Planificación' },
             { id: 2, name: 'Fase 2: Implementación' },
-            { id: 3, name: 'Fase 3: Seguimiento y Auditoría' }
+            { id: 3, name: 'Fase 3: Seguimiento y Auditoría' },
+            { id: 4, name: 'Fase 4: Mejora Continua del PESV' }
           ].map((ph) => {
             const phaseCount = activeStepsForLevel.filter(s => s.phase === ph.id).length;
             return (
@@ -2027,7 +2031,7 @@ export default function StepsModule({
                     <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${getPhaseColor(activeStep.phase)}`}>
                       {getPhaseName(activeStep.phase)}
                     </span>
-                    <span className="text-xs text-gray-400 font-semibold">Paso {activeStep.id} de 22</span>
+                    <span className="text-xs text-gray-400 font-semibold">Paso {activeStep.id} de {PESV_STEPS.length}</span>
                     {!activeStep.levels.includes(currentLevel) && (
                       <span className="bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full text-[10px] font-bold">
                         Paso No Obligatorio en Nivel {currentLevel}
@@ -10549,8 +10553,25 @@ export default function StepsModule({
                     />
                   )}
 
+                  {/* DEMO PASO 23 Y PASO 24: Fase 4 - Mejora Continua del PESV */}
+                  {(activeStep.id === 23 || activeStep.id === 24) && (
+                    <Step23And24ImprovementModule
+                      stepId={activeStep.id as 23 | 24}
+                      config={config}
+                      companyName={companyName}
+                      companyNit={companyNit}
+                      companyLogo={companyLogo}
+                      leaderName={leaderName}
+                      repLegal={repLegal}
+                      onNavigateToStep={(stepId) => {
+                        const target = PESV_STEPS.find(s => s.id === stepId);
+                        if (target) setActiveStep(target);
+                      }}
+                    />
+                  )}
+
                   {/* MENSAJE PARA OTROS PASOS */}
-                  {activeStep.id !== 1 && activeStep.id !== 2 && activeStep.id !== 3 && activeStep.id !== 4 && activeStep.id !== 5 && activeStep.id !== 6 && activeStep.id !== 7 && activeStep.id !== 8 && activeStep.id !== 9 && activeStep.id !== 10 && activeStep.id !== 11 && activeStep.id !== 12 && activeStep.id !== 14 && activeStep.id !== 15 && activeStep.id !== 16 && activeStep.id !== 17 && activeStep.id !== 18 && activeStep.id !== 20 && (
+                  {activeStep.id !== 1 && activeStep.id !== 2 && activeStep.id !== 3 && activeStep.id !== 4 && activeStep.id !== 5 && activeStep.id !== 6 && activeStep.id !== 7 && activeStep.id !== 8 && activeStep.id !== 9 && activeStep.id !== 10 && activeStep.id !== 11 && activeStep.id !== 12 && activeStep.id !== 14 && activeStep.id !== 15 && activeStep.id !== 16 && activeStep.id !== 17 && activeStep.id !== 18 && activeStep.id !== 20 && activeStep.id !== 23 && activeStep.id !== 24 && (
                     <div className="flex items-center gap-2 text-xs text-gray-500 italic bg-white p-3 rounded-lg border border-gray-100 justify-center">
                       <Sparkles size={14} className="text-emerald-500" />
                       <span>El sistema tiene configurado el flujo automatizado para este paso. Explora las pestañas de Integraciones o Indicadores para ver la lógica ejecutándose en vivo.</span>
