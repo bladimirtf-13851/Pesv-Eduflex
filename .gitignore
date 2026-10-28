@@ -9,3 +9,6 @@ coverage/
 .aistudio/
 assets/
 public/assets/aistudio/
+bun.lock
+bun.lockb
+
