@@ -168,8 +168,8 @@ export const PESV_STEPS: PESVStep[] = [
     phase: 2,
     levels: ['ESTÁNDAR', 'AVANZADO'],
     description: 'Evaluar el impacto de cambios en la operación y exigir el cumplimiento de los estándares de seguridad vial a contratistas y terceros.',
-    automationSummary: 'Módulo de homologación de contratistas de transporte, verificación documental y control de proveedores.',
-    completed: false
+    automationSummary: 'Formato oficial de reporte de Gestión del Cambio (CHG) con análisis de impacto/riesgo, plan de acción, autorización y PDF.',
+    completed: true
   },
   {
     id: 19,

@@ -30,6 +30,7 @@ import Step12EmergencyModule from './Step12EmergencyModule';
 import Step14SafeRoadsModule from './Step14SafeRoadsModule';
 import Step15TripPlanningModule from './Step15TripPlanningModule';
 import Step16And17MaintenanceModule from './Step16And17MaintenanceModule';
+import Step18ChangeManagementModule from './Step18ChangeManagementModule';
 import Step20IndicatorsModule from './Step20IndicatorsModule';
 
 interface StepsModuleProps {
@@ -10518,6 +10519,18 @@ export default function StepsModule({
                     />
                   )}
 
+                  {/* DEMO PASO 18: Gestión del cambio y gestión de contratistas */}
+                  {activeStep.id === 18 && (
+                    <Step18ChangeManagementModule
+                      config={config}
+                      companyName={companyName}
+                      companyNit={companyNit}
+                      companyLogo={companyLogo}
+                      leaderName={leaderName}
+                      repLegal={repLegal}
+                    />
+                  )}
+
                   {/* DEMO PASO 20: Indicadores y reporte de autogestión PESV */}
                   {activeStep.id === 20 && (
                     <Step20IndicatorsModule
@@ -10537,7 +10550,7 @@ export default function StepsModule({
                   )}
 
                   {/* MENSAJE PARA OTROS PASOS */}
-                  {activeStep.id !== 1 && activeStep.id !== 2 && activeStep.id !== 3 && activeStep.id !== 4 && activeStep.id !== 5 && activeStep.id !== 6 && activeStep.id !== 7 && activeStep.id !== 8 && activeStep.id !== 9 && activeStep.id !== 10 && activeStep.id !== 11 && activeStep.id !== 12 && activeStep.id !== 14 && activeStep.id !== 15 && activeStep.id !== 16 && activeStep.id !== 17 && activeStep.id !== 20 && (
+                  {activeStep.id !== 1 && activeStep.id !== 2 && activeStep.id !== 3 && activeStep.id !== 4 && activeStep.id !== 5 && activeStep.id !== 6 && activeStep.id !== 7 && activeStep.id !== 8 && activeStep.id !== 9 && activeStep.id !== 10 && activeStep.id !== 11 && activeStep.id !== 12 && activeStep.id !== 14 && activeStep.id !== 15 && activeStep.id !== 16 && activeStep.id !== 17 && activeStep.id !== 18 && activeStep.id !== 20 && (
                     <div className="flex items-center gap-2 text-xs text-gray-500 italic bg-white p-3 rounded-lg border border-gray-100 justify-center">
                       <Sparkles size={14} className="text-emerald-500" />
                       <span>El sistema tiene configurado el flujo automatizado para este paso. Explora las pestañas de Integraciones o Indicadores para ver la lógica ejecutándose en vivo.</span>
